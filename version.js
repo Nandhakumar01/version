@@ -1,6 +1,6 @@
 version = [{
-    name: "Cup Cake",
-    Release_Date: 27 / 04 / 2009,
+    versionType: "Cup Cake",
+    Release_Date: "27 / 04 / 2009",
     Type: "Android 1.5",
     Features: ["Copy and paste features in web browser."],
     Authors: "Elon Decker",
@@ -8,8 +8,8 @@ version = [{
 },
 
 {
-    name: "Donut",
-    Release_Date: 15 / 09 / 2009,
+    VersionType: "Donut",
+    Release_Date: "15 / 09 / 2009",
     Type: "Android 1.6",
     Features: ["Voice and text entry search enhanced to include bookmark history, contacts, and the web.",],
     Authors: "Google",
@@ -19,8 +19,8 @@ version = [{
 },
 
 {
-    name: "Eclair",
-    Release_Date: 23 / 10 / 2009,
+    VersionType: "Eclair",
+    Release_Date:" 23 / 10 / 2009",
     Type: "Android 2.0",
     Features: ["The camera app was also redesigned with numerous new camera features, including flash support, digital zoom, scene mode, white balance"],
     Authors: "Andy Rubin",
@@ -28,8 +28,8 @@ version = [{
 },
 
 {
-    name: "Froyo",
-    Release_Date: 20 / 05 / 2010,
+    VersionType: "Froyo",
+    Release_Date: "20 / 05 / 2010",
     Type: "Android 2.2",
     Features: ["Speed, memory, and performance optimizations"],
     Authors: "JR Raphael",
@@ -46,26 +46,65 @@ version = [{
 // bugId={id:'ASD56',
 // DESCRIPTION:'Voice Dialer (Voice Dialler) is misspelled in the App Drawer'}
 
-function findbyReleaseyear(year){
+function findbyReleaseYear(year){
     console.log("---------------------")
-    filteryear=version.filter(n=>n.Release_Date.include(year))
+    filteredYear=version.filter(n=>n.Release_Date.includes(year))
     console.log(`${filteredYear.length},the version released in ${year}`)
-    console.log(filteredYear)
+    console.table(filteredYear)
 }
 function findByBugs(str){
-    Bugs=version.filter(n=>n.Bugs.include(str))
+    Bugs=version.filter(n=>n.Bugs.includes(str))
     console.log(`${Bugs.length},the version have ${str} Bugs...`)
-    console.log(Bugs)
+    console.table(Bugs)
     console.log(Bugs.length,"Bugs")
 
 }
 function findByFeature(str){
-    feature=version.filter(n=>n.feature.include(str))
-    console.log(`${Features.length},the version have ${str} feature...`)
-    console.log(feature)
+    Feature=version.filter(n=>n.Features.includes(str))
+    console.log(`${Feature.length},the version have ${str} feature...`)
+    console.table(Feature)
 }
 function findByAuthor(name){
-    feature=version.filter(n=>n.Author.include(name))
+    Author=version.filter(n=>n.Authors.includes(name))
     console.log(`${Author.length},the version has developed ${name}...`)
-    console.log(Author)
+    console.table(Author)
 }
+function findByVersion(ver){
+    versions=version.filter(n=>n.VersionType==ver)
+    console.table(versions)
+}
+function findByType(types){
+    type=version.filter(n=>n.Type.includes(types))
+    console.log(`${type.length},the version have ${type} type...`)
+    console.table(types)
+}
+function authorName() {
+    arr = []
+    version.forEach(elements => {
+        for (i of elements.Authors)
+            arr.push(i)
+    })
+    count = 1
+    authorValue = 0
+    maxValue = 1
+    for (i = 0; i < arr.length; i++) {
+        for (j = 1; j < arr.length; j++) {
+            if (arr[i] == arr[j]) {
+                count++
+            }
+            if (maxValue < count) {
+                maxValue = count
+                authorValue = arr[i]
+            }
+        }
+        count = 0
+    }
+    console.log(`The Author ${authorValue} Has Worked ${maxValue} Releases`)
+}
+
+findbyReleaseYear(2010)
+findByBugs("Notifications")
+findByFeature("Copy and paste features in web browser.")
+findByAuthor("Elon Decker")
+findByVersion("VersionType")
+findByType("Android 1.5")
