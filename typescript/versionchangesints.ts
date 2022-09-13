@@ -107,9 +107,8 @@ function authorName() {
     console.log(`The Author ${authorValue} Has Worked ${maxValue} Releases`)
 }
 
-findbyReleaseYear(2010)
+findbyReleaseYear("2010")
 findByBugs("Notifications")
 findByFeature("Copy and paste Features in web browser.")
 findByAuthor("Elon Decker")
-findByVersion("VersionType")
 findByType("Android 1.5")
